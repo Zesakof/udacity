@@ -1,6 +1,6 @@
 #include <iostream>
 #include "tests.h"
-#include "simulate.cpp"
+#include "localizer.cpp"
 
 using namespace std;
 
