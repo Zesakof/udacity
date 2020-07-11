@@ -62,41 +62,50 @@ You can test your code by running this function.
 Do that by first compiling this file and then
 running the output.
 */
-// int main() {
-//
-// 	vector < vector <char> > map;
-// 	vector <char> mapRow;
-// 	int i, j, randInt;
-// 	char color;
-// 	std::vector<int> pose(2);
-// 
-// 	for (i = 0; i < 4; i++)
-// 	{
-// 		mapRow.clear();
-// 		for (j=0; j< 4; j++)
-// 		{
-// 			randInt = rand() % 2;
-// 			if (randInt == 0 ) {
-// 				color = 'r';
-// 			}
-// 			else {
-// 				color = 'g';
-// 			}
-// 			mapRow.push_back(color);
-// 		}
-// 		map.push_back(mapRow);
-// 	}
-// 	Simulation simulation (map, 0.1, 0.9, pose);
-// 	cout << "initialization success!\n";
-//
-// 	for (int i=0; i<1; i++) {
-// 		sense();
-// 		move();
-// 	}
-//
-// 	cout << "map is\n";
-// 	show_grid(map);
-//
-// 	cout << "x, y = (" << simulation.true_pose[0] << ", " << simulation.true_pose[1] << ")" << endl;
-// 	return 0;
-// }
+int main() {
+
+	vector < vector <char> > map;
+	vector < vector <float> > update_grid, move_grid;
+	vector <char> mapRow;
+	int i, j, randInt;
+	char color;
+	std::vector<int> pose(2);
+
+	for (i = 0; i < 4; i++)
+	{
+		mapRow.clear();
+		for (j=0; j< 4; j++)
+		{
+			randInt = rand() % 2;
+			if (randInt == 0 ) {
+				color = 'r';
+			}
+			else {
+				color = 'g';
+			}
+			mapRow.push_back(color);
+		}
+		map.push_back(mapRow);
+	}
+	Simulation simulation (map, 0.1, 0.9, pose);
+	cout << "initialization success!\n";
+
+	update_grid = simulation.beliefs;
+	move_grid = simulation.beliefs;
+
+	for (int i=0; i<3; i++) {
+		update_grid = sense('r', simulation.grid, move_grid, simulation.p_hit, simulation.p_miss);
+		move_grid = move(1, 0, update_grid, simulation.blur);
+		simulation.true_pose[0] = (simulation.true_pose[0] + 1) % 4;
+		simulation.true_pose[1] = (simulation.true_pose[1] + 0) % 4;
+
+		cout << "probabilities are \n";
+		show_grid(move_grid);
+	}
+
+	cout << "map is\n";
+	show_grid(map);
+
+	cout << "x, y = (" << simulation.true_pose[0] << ", " << simulation.true_pose[1] << ")" << endl;
+	return 0;
+}
