@@ -1,6 +1,6 @@
-# Translate Python to C++ Project
+# Implement 2D Robot Motion Project
 
-This is the second project in Udacity's Introduction to Self-Driving Cars Nanodegree. It emphasizes C++ fundamentals such as headers, control flow, debugging, and standard libraries. The project centers around translating working Python code into C++. The final output is a simulation of probabilistic robot motion and localization on a 4x4 grid.
+This is the second project in Udacity's Introduction to Self-Driving Cars Nanodegree. It emphasizes C++ fundamentals such as headers, control flow, debugging, and standard libraries. The final output is a simulation of probabilistic robot motion and localization on a 4x4 grid.
 
 ## Installation
 
@@ -10,7 +10,7 @@ This project requires a compiler that is compatible with C++11, such as g++.
 
 This project consists of the following files:
 
-* `localizer.cpp` - C++ file containing the methods translated from python to C++. The functions in this file allow the robot to initialize itself on a grid, move on x and y axes, and update its location probabilities using Bayesian math.
+* `localizer.cpp` - C++ file containing functions that allow the robot to initialize itself on a grid, move on x and y axes, and update its location probabilities using Bayesian math.
 
 * `helpers.cpp` - C++ file containing helper functions for `localizer.cpp` to leverage. Examples include normalizing probabilities and adding uncertainty to the robot's movements.
 
@@ -18,7 +18,7 @@ This project consists of the following files:
 
     To run the simulation, execute the following the terminal:
     ```
-    cd translate_python_to_cpp
+    cd implement_2D_robot_motion
     g++ -std=c++11 simulate.cpp
     ./a.out
     ```
